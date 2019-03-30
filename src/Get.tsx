@@ -282,7 +282,7 @@ class ContextlessGet<TData, TError, TQueryParams> extends React.Component<
 
       const resolved = await resolveData<TData, TError>({ data, resolve });
 
-      this.setState({ loading: false, data: resolved.data, error: resolved.error });
+      this.setState({ loading: false, data: resolved.data, error: resolved.error, response });
       return data;
     } catch (e) {
       this.setState({

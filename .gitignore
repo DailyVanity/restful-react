@@ -90,7 +90,6 @@ typings/
 .env
 
 public
-lib
 .cache
 
 # End of https://www.gitignore.io/api/node,macos,vscode
@@ -100,6 +99,9 @@ lib
 
 package-lock.json
 
+# Files managed by operational-scripts
+tslint.json
+tsconfig.json
 # Files managed by operational-scripts
 tslint.json
 tsconfig.json

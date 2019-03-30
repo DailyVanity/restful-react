@@ -1,0 +1,44 @@
+import * as React from "react";
+import { ResolveFunction } from "./Get";
+
+export interface RestfulReactProviderProps<T = any> {
+  /** The backend URL where the RESTful resources live. */
+  base: string;
+  /**
+   * The path that gets accumulated from each level of nesting
+   * taking the absolute and relative nature of each path into consideration
+   */
+  parentPath?: string;
+  /**
+   * A function to resolve data return from the backend, most typically
+   * used when the backend response needs to be adapted in some way.
+   */
+  resolve?: ResolveFunction<T>;
+  /**
+   * Options passed to the fetch request.
+   */
+  requestOptions?: (() => Partial<RequestInit>) | Partial<RequestInit>;
+  /**
+   * Trigger on each error.
+   * For `Get` and `Mutation` calls, you can also call `retry` to retry the exact same request.
+   * Please note that it's quite hard to retrieve the response data after a retry mutation in this case.
+   * Depending of your case, it can be easier to add a `localErrorOnly` on your `Mutate` component
+   * to deal with your retry locally instead of in the provider scope.
+   */
+  onError?: (err: any, retry: () => Promise<T | null>, response: Response) => void;
+}
+
+export declare const Context: React.Context<Required<RestfulReactProviderProps<any>>>;
+
+export interface InjectedProps {
+  onError: RestfulReactProviderProps["onError"];
+}
+
+export default class RestfulReactProvider<T> extends React.Component<RestfulReactProviderProps<T>> {
+  public render(): JSX.Element;
+}
+
+export declare const RestfulReactConsumer: React.ExoticComponent<
+  React.ConsumerProps<Required<RestfulReactProviderProps<any>>>
+>;
+// # sourceMappingURL=Context.d.ts.map
